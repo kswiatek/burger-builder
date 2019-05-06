@@ -1,0 +1,15 @@
+.NavigationItems {    /*...a tu jak nie spełniony, czyli jak jest małe*/
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 100%;
+}
+
+@media (min-width: 500px) { /*jak ten warunek jest spełniony...*/ /*this is media query for desktop devices*/
+    .NavigationItems {
+        flex-flow: row;
+    }
+}
