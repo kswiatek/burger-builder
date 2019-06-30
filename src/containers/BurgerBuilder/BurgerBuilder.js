@@ -91,28 +91,17 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        //alert('You continue!');
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Max S',
-                address: {
-                    street: 'TestStreet1',
-                    zipcode: 53345,
-                    country: 'Germany'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        };
-        axios.post('/orders.json', order) //baseURL domyślnie/nazwaJakaś.json
-            .then(response => this.setState({loading: false, purchasing: false}))
-            .catch(error => {
-                console.log(error);
-                this.setState({loading: false, purchasing: false});
-            });
+        const queryParams = [];
+        for(let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+            //robi sobie takie pary key value kodując to w urlu
+        }
+        queryParams.push('price=' + this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString //wysłał w URLu składniki
+        });
     } //w mongoDB nie ma tabel tylko jest taka struktura obiektów jsonowych jak tu, on to tam wrzuca i tyle
 
     render() {
