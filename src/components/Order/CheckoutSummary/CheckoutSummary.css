@@ -4,8 +4,9 @@
     margin: auto;
 }
 
-@media (min-width: 600px) {  /* check if we have at least 600px minimum */
+/* check if we have at least 600px minimum */
+/* @media (min-width: 600px) {  
     .CheckoutSummary {
         width: 500px;
     }
-}
+} */
